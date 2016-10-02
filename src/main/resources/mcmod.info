@@ -1,0 +1,16 @@
+[
+{
+  "modid": "lockablecontainers",
+  "name": "Lockable Containers",
+  "description": "Allows chests and other containers to be locked with a key code.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/Choonster/LockableContainers",
+  "updateUrl": "",
+  "authorList": ["Choonster"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

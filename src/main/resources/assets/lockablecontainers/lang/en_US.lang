@@ -1,0 +1,12 @@
+# Creative Tabs
+itemGroup.lockablecontainers=Lockable Containers
+
+# GUI Strings
+lockablecontainers:lock.set_lock_code=Set Lock Code
+lockablecontainers:lock.lock_code=Lock Code
+
+# Items
+item.lockablecontainers:key.name=Key
+
+# Chat Messages
+message.lockablecontainers:lock.already_locked=Can't lock container that's already locked.

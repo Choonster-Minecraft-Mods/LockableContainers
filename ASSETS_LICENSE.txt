@@ -1,0 +1,2 @@
+The file src/main/resources/assets/lockablecontainers/textures/items/key.png was created by paomedia (https://github.com/paomedia and http://www.paomedia.com/).
+It is available from IconArchive.com (http://www.iconarchive.com/show/small-n-flat-icons-by-paomedia/key-icon.html) under the CC0 1.0 Universal Public Domain Dedication license: https://creativecommons.org/publicdomain/zero/1.0/
