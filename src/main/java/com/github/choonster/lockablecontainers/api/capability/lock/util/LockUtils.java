@@ -32,6 +32,7 @@ public class LockUtils {
 	 *
 	 * @param world The world
 	 * @param pos   The position
+	 * @param side  The side, if any
 	 * @return The ILock, or null if there isn't one.
 	 */
 	@Nullable
