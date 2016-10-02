@@ -13,3 +13,6 @@ cache:
 
 deploy:
   skip_cleanup: true
+
+jdk:
+  - oraclejdk8
