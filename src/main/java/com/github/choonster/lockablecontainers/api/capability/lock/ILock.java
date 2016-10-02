@@ -1,12 +1,6 @@
 package com.github.choonster.lockablecontainers.api.capability.lock;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.network.play.server.SPacketChat;
-import net.minecraft.network.play.server.SPacketSoundEffect;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IWorldNameable;
 import net.minecraft.world.LockCode;
 

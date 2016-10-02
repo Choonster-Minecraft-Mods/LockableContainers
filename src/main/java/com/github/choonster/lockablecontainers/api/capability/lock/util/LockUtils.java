@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.ILockableContainer;
-import net.minecraft.world.LockCode;
 
 import javax.annotation.Nullable;
 
@@ -56,7 +55,7 @@ public class LockUtils {
 	/**
 	 * Try to open the {@link ILock}, notifying the player if they can't.
 	 *
-	 * @param lock The lock
+	 * @param lock   The lock
 	 * @param player The player opening the lock
 	 * @return Was the player allowed to open the lock?
 	 */

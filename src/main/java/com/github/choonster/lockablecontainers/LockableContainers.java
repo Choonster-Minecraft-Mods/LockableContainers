@@ -37,7 +37,7 @@ public class LockableContainers {
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent event){
+	public void init(FMLInitializationEvent event) {
 		ModRecipes.registerRecipes();
 	}
 }

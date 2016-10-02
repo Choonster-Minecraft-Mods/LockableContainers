@@ -18,15 +18,16 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ModModels {
 
 	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event){
+	public static void registerModels(ModelRegistryEvent event) {
 		registerItemModel(ModItems.KEY);
 	}
 
 	/**
 	 * Register the default model for an {@link Item}.
+	 *
 	 * @param item The item
 	 */
-	private static void registerItemModel(Item item){
+	private static void registerItemModel(Item item) {
 		final ModelResourceLocation location = new ModelResourceLocation(item.getRegistryName(), "inventory");
 		ModelLoader.setCustomMeshDefinition(item, MeshDefinitionFix.create(stack -> location));
 	}
