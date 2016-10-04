@@ -22,8 +22,8 @@ version = mod_version
 group = package_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = mod_name + "_" + mc_version
 
-if (System.getenv().BUILD_NUMBER != null) { // Adds the build number to the end of the version string if on a build server
-    version += ".${System.getenv().BUILD_NUMBER}"
+if (System.getenv().TRAVIS_BUILD_NUMBER != null) { // Adds the build number to the end of the version string if on a build server
+    version += ".${System.getenv().TRAVIS_BUILD_NUMBER}"
 }
 
 def projectUrl = 'https://github.com/Choonster/LockableContainers'
