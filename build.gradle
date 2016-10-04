@@ -11,7 +11,12 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.jfrog.artifactory" version "4.4.0"
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
 
 version = mod_version
 group = package_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -20,6 +25,11 @@ archivesBaseName = mod_name + "_" + mc_version
 if (System.getenv().BUILD_NUMBER != null) { // Adds the build number to the end of the version string if on a build server
     version += ".${System.getenv().BUILD_NUMBER}"
 }
+
+def projectUrl = 'https://github.com/Choonster/LockableContainers'
+def bintrayInfoFileName = 'bintray-descriptor.bintray-info.json'
+def artifactory_user = System.getenv().BINTRAY_USER
+def artifactory_password = System.getenv().BINTRAY_PASSWORD
 
 srcCompat = JavaVersion.VERSION_1_8
 targetCompat = JavaVersion.VERSION_1_8
@@ -77,6 +87,62 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
-artifacts {
-    archives javadocJar
+build.dependsOn javadocJar
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+
+            pom.withXml {
+                asNode().children().last() + {
+                    resolveStrategy = Closure.DELEGATE_FIRST
+                    name 'Lockable Containers'
+                    description 'A Minecraft Forge mod that allows chests and other containers to be locked with a key code.'
+                    url projectUrl
+                    scm {
+                        url projectUrl
+                        connection projectUrl
+                        developerConnection projectUrl
+                    }
+                    licenses {
+                        license {
+                            name 'The MIT License'
+                            url 'https://opensource.org/licenses/MIT'
+                            distribution 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'Choonster'
+                            name 'Choonster'
+                            url 'https://github.com/Choonster'
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'oss-release-local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+        }
+        defaults {
+            // Reference to Gradle publications defined in the build script.
+            // This is how we tell the Artifactory Plugin which artifacts should be
+            // published to Artifactory.
+            publications('mavenJava')
+            publishArtifacts = true
+        }
+    }
+}
+
