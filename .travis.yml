@@ -17,6 +17,8 @@ deploy:
   skip_cleanup: true
   provider: script
   script: ./gradlew artifactoryPublish
+  on:
+    branch: 1.10.2
 
 jdk:
   - oraclejdk8
