@@ -22,12 +22,13 @@ version = mod_version
 group = package_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = mod_name + "_" + mc_version
 
-if (System.getenv().TRAVIS_BUILD_NUMBER != null) { // Adds the build number to the end of the version string if on a build server
-    version += ".${System.getenv().TRAVIS_BUILD_NUMBER}"
+def buildNumber = System.getenv().TRAVIS_BUILD_NUMBER
+if (buildNumber != null) {
+    // Adds the build number to the end of the version string if on a build server
+    version += ".${buildNumber}"
 }
 
 def projectUrl = 'https://github.com/Choonster/LockableContainers'
-def bintrayInfoFileName = 'bintray-descriptor.bintray-info.json'
 def artifactory_user = System.getenv().BINTRAY_USER
 def artifactory_password = System.getenv().BINTRAY_PASSWORD
 
@@ -87,8 +88,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
-build.dependsOn javadocJar
+artifacts {
+    archives javadocJar
+}
 
+// Based on https://github.com/JFrogDev/project-examples/blob/master/gradle-examples/4/gradle-example-publish-bintray-info/build.gradle
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -141,7 +145,6 @@ artifactory {
             // This is how we tell the Artifactory Plugin which artifacts should be
             // published to Artifactory.
             publications('mavenJava')
-            publishArtifacts = true
         }
     }
 }
