@@ -26,6 +26,9 @@ def buildNumber = System.getenv().TRAVIS_BUILD_NUMBER
 if (buildNumber != null) {
     // Adds the build number to the end of the version string if on a build server
     version += ".${buildNumber}"
+
+    // Set the Artifactory build number to the Travis build number
+    buildInfo.build.number=buildNumber
 }
 
 def projectUrl = 'https://github.com/Choonster/LockableContainers'

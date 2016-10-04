@@ -18,7 +18,7 @@ cache:
 deploy:
   skip_cleanup: true
   provider: script
-  script: ./gradlew artifactoryPublish
+  script: deploy.sh
   on:
     branch: 1.10.2
 
